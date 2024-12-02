@@ -13,6 +13,7 @@
 #include <limits>
 #include <nlohmann/json.hpp>
 #include <tdl/tdl.h>
+#include <yaml-cpp/yaml.h>
 
 using json = nlohmann::json;
 

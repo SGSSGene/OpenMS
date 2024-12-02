@@ -1,20 +1,11 @@
-<!-- SPDX-FileCopyrightText: 2006-2024, Knut Reinert & Freie Universität Berlin -->
-<!-- SPDX-FileCopyrightText: 2016-2024, Knut Reinert & MPI für molekulare Genetik -->
-<!-- SPDX-License-Identifier: CC0-1.0 -->
-##### Include library
-You will need to include `tdl/tdl.h` to use this library:
-<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./src/test_tdl/example/example2.cpp&lines=5-5) -->
-<!-- The below code snippet is automatically added from ./src/test_tdl/example/example2.cpp -->
-```cpp
-#include <tdl/tdl.h>
-```
-<!-- MARKDOWN-AUTO-DOCS:END -->
+// SPDX-FileCopyrightText: 2006-2024, Knut Reinert & Freie Universität Berlin
+// SPDX-FileCopyrightText: 2016-2024, Knut Reinert & MPI für molekulare Genetik
+// SPDX-License-Identifier: CC0-1.0
 
-##### Define Meta info
-As a second step you define meta info about your app
-<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./src/test_tdl/example/example2.cpp&lines=9-22) -->
-<!-- The below code snippet is automatically added from ./src/test_tdl/example/example2.cpp -->
-```cpp
+#include <tdl/tdl.h>
+
+// clang-format off
+int main(int, char** argv) {
 auto toolInfo = tdl::ToolInfo {
   .metaInfo = {
     .version = "7.6.5",                // version of your tool
@@ -29,14 +20,8 @@ auto toolInfo = tdl::ToolInfo {
                        {"doi:456", "https://en.wikipedia.org/wiki/Turing_completeness"}}
   }
 };
-```
-<!-- MARKDOWN-AUTO-DOCS:END -->
 
-##### Define parameters
-The third step is to define which parameter your program will be interessted in:
-<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./src/test_tdl/example/example2.cpp&lines=25-35) -->
-<!-- The below code snippet is automatically added from ./src/test_tdl/example/example2.cpp -->
-```cpp
+// allow a call like `./myTool build --input <file1> <file2>`
 auto node = tdl::Node {
   .name        = "build",
   .description = "builds some index for search",
@@ -48,18 +33,13 @@ auto node = tdl::Node {
   }}
 };
 toolInfo.params.push_back(node);
-```
-<!-- MARKDOWN-AUTO-DOCS:END -->
 
-##### Map CLI options
-As a fourth step you have to define how your register option `input` has to be called on the command line:
-<!-- MARKDOWN-AUTO-DOCS:START (CODE:src=./src/test_tdl/example/example2.cpp&lines=37-41) -->
-<!-- The below code snippet is automatically added from ./src/test_tdl/example/example2.cpp -->
-```cpp
 toolInfo.cliMapping = {
        tdl::CLIMapping {.optionIdentifier = "--input",   .referenceName = "input"},
        tdl::CLIMapping {.optionIdentifier = "--index",   .referenceName = "index"},
        tdl::CLIMapping {.optionIdentifier = "--queries", .referenceName = "queries"}
   };
-```
-<!-- MARKDOWN-AUTO-DOCS:END -->
+
+(void) toolInfo;
+}
+// clang-format on

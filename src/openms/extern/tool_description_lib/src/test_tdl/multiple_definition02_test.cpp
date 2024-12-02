@@ -1,9 +1,8 @@
 // SPDX-FileCopyrightText: 2006-2024, Knut Reinert & Freie Universität Berlin
 // SPDX-FileCopyrightText: 2016-2024, Knut Reinert & MPI für molekulare Genetik
-// SPDX-License-Identifier: BSD-3-Clause
+// SPDX-License-Identifier: CC0-1.0
 
-#pragma once
+#include <tdl/convertToCTD.h>
+#include <tdl/ToolInfo.h>
 
-#include "convertToCTD.h"
-#include "convertToCWL.h"
-#include "ToolInfo.h"
+//! see multiple_definition01_test.cpp
