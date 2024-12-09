@@ -75,6 +75,7 @@ Fixes:
   - add check that otherwise will result in out of memory error
   - reduce memory fragmentation on huge files
 - KNIME Plugin: Fix categories (#7622)
+- CWL files include default values (#7753)
 
 
 ------------------------------------------------------------------------------------------
