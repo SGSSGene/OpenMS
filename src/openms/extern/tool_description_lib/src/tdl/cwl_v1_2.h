@@ -2733,8 +2733,9 @@ struct Operation {
 };
 }
 
-template <typename T>
-w3id_org::cwl::heap_object<T>::~heap_object() = default;
+namespace w3id_org::cwl {
+template <typename T> heap_object<T>::~heap_object() = default;
+}
 
 inline w3id_org::cwl::salad::Documented::~Documented() = default;
 inline auto w3id_org::cwl::salad::Documented::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
@@ -2792,12 +2793,13 @@ inline void w3id_org::cwl::salad::RecordField::fromYaml([[maybe_unused]] YAML::N
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::RecordField> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::salad::RecordField> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::salad::RecordField> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::salad::RecordField> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::salad::RecordField{};
+        auto res = ::w3id_org::cwl::salad::RecordField{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.name)::value_t>::value) try {
             fromYaml(n["name"], *res.name);
@@ -2814,6 +2816,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::RecordField
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::salad::RecordSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -2846,12 +2849,13 @@ inline void w3id_org::cwl::salad::RecordSchema::fromYaml([[maybe_unused]] YAML::
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::RecordSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::salad::RecordSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::salad::RecordSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::salad::RecordSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::salad::RecordSchema{};
+        auto res = ::w3id_org::cwl::salad::RecordSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.fields)::value_t>::value) try {
             fromYaml(n["fields"], *res.fields);
@@ -2868,6 +2872,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::RecordSchem
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::salad::EnumSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -2910,12 +2915,13 @@ inline void w3id_org::cwl::salad::EnumSchema::fromYaml([[maybe_unused]] YAML::No
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::EnumSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::salad::EnumSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::salad::EnumSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::salad::EnumSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::salad::EnumSchema{};
+        auto res = ::w3id_org::cwl::salad::EnumSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.name)::value_t>::value) try {
             fromYaml(n["name"], *res.name);
@@ -2938,6 +2944,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::EnumSchema>
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::salad::ArraySchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -2970,12 +2977,13 @@ inline void w3id_org::cwl::salad::ArraySchema::fromYaml([[maybe_unused]] YAML::N
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::ArraySchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::salad::ArraySchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::salad::ArraySchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::salad::ArraySchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::salad::ArraySchema{};
+        auto res = ::w3id_org::cwl::salad::ArraySchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.items)::value_t>::value) try {
             fromYaml(n["items"], *res.items);
@@ -2992,6 +3000,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::salad::ArraySchema
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::File::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -3123,12 +3132,13 @@ inline void w3id_org::cwl::cwl::File::fromYaml([[maybe_unused]] YAML::Node const
         fromYaml(expandedNode, *contents);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::File> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::File> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::File> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::File> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::File{};
+        auto res = ::w3id_org::cwl::cwl::File{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -3205,6 +3215,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::File> {
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::Directory::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -3266,12 +3277,13 @@ inline void w3id_org::cwl::cwl::Directory::fromYaml([[maybe_unused]] YAML::Node 
         fromYaml(expandedNode, *listing);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Directory> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::Directory> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::Directory> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::Directory> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::Directory{};
+        auto res = ::w3id_org::cwl::cwl::Directory{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -3306,6 +3318,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Directory> {
         return std::nullopt;
     }
 };
+}
 inline w3id_org::cwl::cwl::Labeled::~Labeled() = default;
 inline auto w3id_org::cwl::cwl::Labeled::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
@@ -3499,12 +3512,13 @@ inline void w3id_org::cwl::cwl::InputBinding::fromYaml([[maybe_unused]] YAML::No
         fromYaml(expandedNode, *loadContents);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputBinding> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InputBinding> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InputBinding> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InputBinding> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InputBinding{};
+        auto res = ::w3id_org::cwl::cwl::InputBinding{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.loadContents)::value_t>::value) try {
             fromYaml(n["loadContents"], *res.loadContents);
@@ -3515,6 +3529,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputBinding>
         return std::nullopt;
     }
 };
+}
 inline w3id_org::cwl::cwl::IOSchema::~IOSchema() = default;
 inline auto w3id_org::cwl::cwl::IOSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
@@ -3671,12 +3686,13 @@ inline void w3id_org::cwl::cwl::InputRecordField::fromYaml([[maybe_unused]] YAML
         fromYaml(expandedNode, *loadListing);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputRecordField> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InputRecordField> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InputRecordField> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InputRecordField> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InputRecordField{};
+        auto res = ::w3id_org::cwl::cwl::InputRecordField{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.doc)::value_t>::value) try {
             fromYaml(n["doc"], *res.doc);
@@ -3735,6 +3751,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputRecordFi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::InputRecordSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -3797,12 +3814,13 @@ inline void w3id_org::cwl::cwl::InputRecordSchema::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputRecordSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InputRecordSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InputRecordSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InputRecordSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InputRecordSchema{};
+        auto res = ::w3id_org::cwl::cwl::InputRecordSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.fields)::value_t>::value) try {
             fromYaml(n["fields"], *res.fields);
@@ -3837,6 +3855,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputRecordSc
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::InputEnumSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -3852,16 +3871,18 @@ inline void w3id_org::cwl::cwl::InputEnumSchema::fromYaml([[maybe_unused]] YAML:
     w3id_org::cwl::salad::EnumSchema::fromYaml(n);
     w3id_org::cwl::cwl::InputSchema::fromYaml(n);
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputEnumSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InputEnumSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InputEnumSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InputEnumSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InputEnumSchema{};
+        auto res = ::w3id_org::cwl::cwl::InputEnumSchema{};
 
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::InputArraySchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -3924,12 +3945,13 @@ inline void w3id_org::cwl::cwl::InputArraySchema::fromYaml([[maybe_unused]] YAML
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputArraySchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InputArraySchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InputArraySchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InputArraySchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InputArraySchema{};
+        auto res = ::w3id_org::cwl::cwl::InputArraySchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.items)::value_t>::value) try {
             fromYaml(n["items"], *res.items);
@@ -3964,6 +3986,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InputArraySch
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OutputRecordField::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4046,12 +4069,13 @@ inline void w3id_org::cwl::cwl::OutputRecordField::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *format);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputRecordField> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OutputRecordField> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OutputRecordField> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OutputRecordField> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OutputRecordField{};
+        auto res = ::w3id_org::cwl::cwl::OutputRecordField{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.doc)::value_t>::value) try {
             fromYaml(n["doc"], *res.doc);
@@ -4098,6 +4122,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputRecordF
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OutputRecordSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4160,12 +4185,13 @@ inline void w3id_org::cwl::cwl::OutputRecordSchema::fromYaml([[maybe_unused]] YA
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputRecordSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OutputRecordSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OutputRecordSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OutputRecordSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OutputRecordSchema{};
+        auto res = ::w3id_org::cwl::cwl::OutputRecordSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.fields)::value_t>::value) try {
             fromYaml(n["fields"], *res.fields);
@@ -4200,6 +4226,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputRecordS
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OutputEnumSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4215,16 +4242,18 @@ inline void w3id_org::cwl::cwl::OutputEnumSchema::fromYaml([[maybe_unused]] YAML
     w3id_org::cwl::salad::EnumSchema::fromYaml(n);
     w3id_org::cwl::cwl::OutputSchema::fromYaml(n);
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputEnumSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OutputEnumSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OutputEnumSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OutputEnumSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OutputEnumSchema{};
+        auto res = ::w3id_org::cwl::cwl::OutputEnumSchema{};
 
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OutputArraySchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4287,12 +4316,13 @@ inline void w3id_org::cwl::cwl::OutputArraySchema::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputArraySchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OutputArraySchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OutputArraySchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OutputArraySchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OutputArraySchema{};
+        auto res = ::w3id_org::cwl::cwl::OutputArraySchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.items)::value_t>::value) try {
             fromYaml(n["items"], *res.items);
@@ -4327,6 +4357,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OutputArraySc
         return std::nullopt;
     }
 };
+}
 inline w3id_org::cwl::cwl::InputParameter::~InputParameter() = default;
 inline auto w3id_org::cwl::cwl::InputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
@@ -4494,12 +4525,13 @@ inline void w3id_org::cwl::cwl::InlineJavascriptRequirement::fromYaml([[maybe_un
         fromYaml(expandedNode, *expressionLib);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InlineJavascriptRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InlineJavascriptRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InlineJavascriptRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InlineJavascriptRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InlineJavascriptRequirement{};
+        auto res = ::w3id_org::cwl::cwl::InlineJavascriptRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -4516,6 +4548,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InlineJavascr
         return std::nullopt;
     }
 };
+}
 inline w3id_org::cwl::cwl::CommandInputSchema::~CommandInputSchema() = default;
 inline auto w3id_org::cwl::cwl::CommandInputSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
@@ -4561,12 +4594,13 @@ inline void w3id_org::cwl::cwl::SchemaDefRequirement::fromYaml([[maybe_unused]] 
         fromYaml(expandedNode, *types);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SchemaDefRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::SchemaDefRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::SchemaDefRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::SchemaDefRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::SchemaDefRequirement{};
+        auto res = ::w3id_org::cwl::cwl::SchemaDefRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -4583,6 +4617,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SchemaDefRequ
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::SecondaryFileSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4614,12 +4649,13 @@ inline void w3id_org::cwl::cwl::SecondaryFileSchema::fromYaml([[maybe_unused]] Y
         fromYaml(expandedNode, *required);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SecondaryFileSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::SecondaryFileSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::SecondaryFileSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::SecondaryFileSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::SecondaryFileSchema{};
+        auto res = ::w3id_org::cwl::cwl::SecondaryFileSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.pattern)::value_t>::value) try {
             fromYaml(n["pattern"], *res.pattern);
@@ -4636,6 +4672,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SecondaryFile
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::LoadListingRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4669,12 +4706,13 @@ inline void w3id_org::cwl::cwl::LoadListingRequirement::fromYaml([[maybe_unused]
         fromYaml(expandedNode, *loadListing);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::LoadListingRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::LoadListingRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::LoadListingRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::LoadListingRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::LoadListingRequirement{};
+        auto res = ::w3id_org::cwl::cwl::LoadListingRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -4691,6 +4729,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::LoadListingRe
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::EnvironmentDef::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4722,12 +4761,13 @@ inline void w3id_org::cwl::cwl::EnvironmentDef::fromYaml([[maybe_unused]] YAML::
         fromYaml(expandedNode, *envValue);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::EnvironmentDef> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::EnvironmentDef> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::EnvironmentDef> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::EnvironmentDef> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::EnvironmentDef{};
+        auto res = ::w3id_org::cwl::cwl::EnvironmentDef{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.envName)::value_t>::value) try {
             fromYaml(n["envName"], *res.envName);
@@ -4744,6 +4784,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::EnvironmentDe
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandLineBinding::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4817,12 +4858,13 @@ inline void w3id_org::cwl::cwl::CommandLineBinding::fromYaml([[maybe_unused]] YA
         fromYaml(expandedNode, *shellQuote);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineBinding> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandLineBinding> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandLineBinding> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandLineBinding> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandLineBinding{};
+        auto res = ::w3id_org::cwl::cwl::CommandLineBinding{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.position)::value_t>::value) try {
             fromYaml(n["position"], *res.position);
@@ -4863,6 +4905,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineBi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputBinding::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4896,12 +4939,13 @@ inline void w3id_org::cwl::cwl::CommandOutputBinding::fromYaml([[maybe_unused]] 
         fromYaml(expandedNode, *outputEval);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputBinding> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputBinding> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputBinding> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputBinding> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputBinding{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputBinding{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.glob)::value_t>::value) try {
             fromYaml(n["glob"], *res.glob);
@@ -4918,6 +4962,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandLineBindable::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -4939,12 +4984,13 @@ inline void w3id_org::cwl::cwl::CommandLineBindable::fromYaml([[maybe_unused]] Y
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineBindable> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandLineBindable> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandLineBindable> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandLineBindable> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandLineBindable{};
+        auto res = ::w3id_org::cwl::cwl::CommandLineBindable{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.inputBinding)::value_t>::value) try {
             fromYaml(n["inputBinding"], *res.inputBinding);
@@ -4955,6 +5001,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineBi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandInputRecordField::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5067,12 +5114,13 @@ inline void w3id_org::cwl::cwl::CommandInputRecordField::fromYaml([[maybe_unused
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputRecordField> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandInputRecordField> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandInputRecordField> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandInputRecordField> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandInputRecordField{};
+        auto res = ::w3id_org::cwl::cwl::CommandInputRecordField{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.doc)::value_t>::value) try {
             fromYaml(n["doc"], *res.doc);
@@ -5137,6 +5185,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputR
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandInputRecordSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5209,12 +5258,13 @@ inline void w3id_org::cwl::cwl::CommandInputRecordSchema::fromYaml([[maybe_unuse
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputRecordSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandInputRecordSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandInputRecordSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandInputRecordSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandInputRecordSchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandInputRecordSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.fields)::value_t>::value) try {
             fromYaml(n["fields"], *res.fields);
@@ -5255,6 +5305,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputR
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandInputEnumSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5327,12 +5378,13 @@ inline void w3id_org::cwl::cwl::CommandInputEnumSchema::fromYaml([[maybe_unused]
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputEnumSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandInputEnumSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandInputEnumSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandInputEnumSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandInputEnumSchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandInputEnumSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.name)::value_t>::value) try {
             fromYaml(n["name"], *res.name);
@@ -5373,6 +5425,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputE
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandInputArraySchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5445,12 +5498,13 @@ inline void w3id_org::cwl::cwl::CommandInputArraySchema::fromYaml([[maybe_unused
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputArraySchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandInputArraySchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandInputArraySchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandInputArraySchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandInputArraySchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandInputArraySchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.items)::value_t>::value) try {
             fromYaml(n["items"], *res.items);
@@ -5491,6 +5545,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputA
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputRecordField::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5583,12 +5638,13 @@ inline void w3id_org::cwl::cwl::CommandOutputRecordField::fromYaml([[maybe_unuse
         fromYaml(expandedNode, *outputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputRecordField> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputRecordField> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputRecordField> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputRecordField> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputRecordField{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputRecordField{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.doc)::value_t>::value) try {
             fromYaml(n["doc"], *res.doc);
@@ -5641,6 +5697,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputRecordSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5703,12 +5760,13 @@ inline void w3id_org::cwl::cwl::CommandOutputRecordSchema::fromYaml([[maybe_unus
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputRecordSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputRecordSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputRecordSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputRecordSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputRecordSchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputRecordSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.fields)::value_t>::value) try {
             fromYaml(n["fields"], *res.fields);
@@ -5743,6 +5801,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputEnumSchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5805,12 +5864,13 @@ inline void w3id_org::cwl::cwl::CommandOutputEnumSchema::fromYaml([[maybe_unused
         fromYaml(expandedNode, *doc);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputEnumSchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputEnumSchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputEnumSchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputEnumSchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputEnumSchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputEnumSchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.name)::value_t>::value) try {
             fromYaml(n["name"], *res.name);
@@ -5845,6 +5905,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputArraySchema::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5907,12 +5968,13 @@ inline void w3id_org::cwl::cwl::CommandOutputArraySchema::fromYaml([[maybe_unuse
         fromYaml(expandedNode, *name);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputArraySchema> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputArraySchema> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputArraySchema> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputArraySchema> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputArraySchema{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputArraySchema{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.items)::value_t>::value) try {
             fromYaml(n["items"], *res.items);
@@ -5947,6 +6009,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandInputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -5981,12 +6044,13 @@ inline void w3id_org::cwl::cwl::CommandInputParameter::fromYaml([[maybe_unused]]
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandInputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandInputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandInputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandInputParameter{};
+        auto res = ::w3id_org::cwl::cwl::CommandInputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -6003,6 +6067,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandInputP
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandOutputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6037,12 +6102,13 @@ inline void w3id_org::cwl::cwl::CommandOutputParameter::fromYaml([[maybe_unused]
         fromYaml(expandedNode, *outputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandOutputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandOutputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandOutputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandOutputParameter{};
+        auto res = ::w3id_org::cwl::cwl::CommandOutputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -6059,6 +6125,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandOutput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::CommandLineTool::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6250,12 +6317,13 @@ inline void w3id_org::cwl::cwl::CommandLineTool::fromYaml([[maybe_unused]] YAML:
         fromYaml(expandedNode, *permanentFailCodes);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineTool> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::CommandLineTool> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::CommandLineTool> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::CommandLineTool> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::CommandLineTool{};
+        auto res = ::w3id_org::cwl::cwl::CommandLineTool{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.id)::value_t>::value) try {
             fromYaml(n["id"], *res.id);
@@ -6368,6 +6436,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::CommandLineTo
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::DockerRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6451,12 +6520,13 @@ inline void w3id_org::cwl::cwl::DockerRequirement::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *dockerOutputDirectory);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::DockerRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::DockerRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::DockerRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::DockerRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::DockerRequirement{};
+        auto res = ::w3id_org::cwl::cwl::DockerRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -6503,6 +6573,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::DockerRequire
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::SoftwareRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6536,12 +6607,13 @@ inline void w3id_org::cwl::cwl::SoftwareRequirement::fromYaml([[maybe_unused]] Y
         fromYaml(expandedNode, *packages);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SoftwareRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::SoftwareRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::SoftwareRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::SoftwareRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::SoftwareRequirement{};
+        auto res = ::w3id_org::cwl::cwl::SoftwareRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -6558,6 +6630,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SoftwareRequi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::SoftwarePackage::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6599,12 +6672,13 @@ inline void w3id_org::cwl::cwl::SoftwarePackage::fromYaml([[maybe_unused]] YAML:
         fromYaml(expandedNode, *specs);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SoftwarePackage> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::SoftwarePackage> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::SoftwarePackage> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::SoftwarePackage> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::SoftwarePackage{};
+        auto res = ::w3id_org::cwl::cwl::SoftwarePackage{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.package)::value_t>::value) try {
             fromYaml(n["package"], *res.package);
@@ -6627,6 +6701,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SoftwarePacka
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::Dirent::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6668,12 +6743,13 @@ inline void w3id_org::cwl::cwl::Dirent::fromYaml([[maybe_unused]] YAML::Node con
         fromYaml(expandedNode, *writable);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Dirent> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::Dirent> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::Dirent> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::Dirent> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::Dirent{};
+        auto res = ::w3id_org::cwl::cwl::Dirent{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.entryname)::value_t>::value) try {
             fromYaml(n["entryname"], *res.entryname);
@@ -6696,6 +6772,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Dirent> {
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::InitialWorkDirRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6729,12 +6806,13 @@ inline void w3id_org::cwl::cwl::InitialWorkDirRequirement::fromYaml([[maybe_unus
         fromYaml(expandedNode, *listing);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InitialWorkDirRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InitialWorkDirRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InitialWorkDirRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InitialWorkDirRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InitialWorkDirRequirement{};
+        auto res = ::w3id_org::cwl::cwl::InitialWorkDirRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -6751,6 +6829,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InitialWorkDi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::EnvVarRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6784,12 +6863,13 @@ inline void w3id_org::cwl::cwl::EnvVarRequirement::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *envDef);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::EnvVarRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::EnvVarRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::EnvVarRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::EnvVarRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::EnvVarRequirement{};
+        auto res = ::w3id_org::cwl::cwl::EnvVarRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -6806,6 +6886,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::EnvVarRequire
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ShellCommandRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6829,12 +6910,13 @@ inline void w3id_org::cwl::cwl::ShellCommandRequirement::fromYaml([[maybe_unused
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ShellCommandRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ShellCommandRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ShellCommandRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ShellCommandRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ShellCommandRequirement{};
+        auto res = ::w3id_org::cwl::cwl::ShellCommandRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -6845,6 +6927,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ShellCommandR
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ResourceRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -6948,12 +7031,13 @@ inline void w3id_org::cwl::cwl::ResourceRequirement::fromYaml([[maybe_unused]] Y
         fromYaml(expandedNode, *outdirMax);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ResourceRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ResourceRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ResourceRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ResourceRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ResourceRequirement{};
+        auto res = ::w3id_org::cwl::cwl::ResourceRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -7012,6 +7096,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ResourceRequi
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::WorkReuse::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7045,12 +7130,13 @@ inline void w3id_org::cwl::cwl::WorkReuse::fromYaml([[maybe_unused]] YAML::Node 
         fromYaml(expandedNode, *enableReuse);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkReuse> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkReuse> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkReuse> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkReuse> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkReuse{};
+        auto res = ::w3id_org::cwl::cwl::WorkReuse{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -7067,6 +7153,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkReuse> {
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::NetworkAccess::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7100,12 +7187,13 @@ inline void w3id_org::cwl::cwl::NetworkAccess::fromYaml([[maybe_unused]] YAML::N
         fromYaml(expandedNode, *networkAccess);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::NetworkAccess> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::NetworkAccess> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::NetworkAccess> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::NetworkAccess> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::NetworkAccess{};
+        auto res = ::w3id_org::cwl::cwl::NetworkAccess{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -7122,6 +7210,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::NetworkAccess
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::InplaceUpdateRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7155,12 +7244,13 @@ inline void w3id_org::cwl::cwl::InplaceUpdateRequirement::fromYaml([[maybe_unuse
         fromYaml(expandedNode, *inplaceUpdate);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InplaceUpdateRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::InplaceUpdateRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::InplaceUpdateRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::InplaceUpdateRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::InplaceUpdateRequirement{};
+        auto res = ::w3id_org::cwl::cwl::InplaceUpdateRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -7177,6 +7267,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::InplaceUpdate
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ToolTimeLimit::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7210,12 +7301,13 @@ inline void w3id_org::cwl::cwl::ToolTimeLimit::fromYaml([[maybe_unused]] YAML::N
         fromYaml(expandedNode, *timelimit);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ToolTimeLimit> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ToolTimeLimit> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ToolTimeLimit> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ToolTimeLimit> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ToolTimeLimit{};
+        auto res = ::w3id_org::cwl::cwl::ToolTimeLimit{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -7232,6 +7324,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ToolTimeLimit
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ExpressionToolOutputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7256,12 +7349,13 @@ inline void w3id_org::cwl::cwl::ExpressionToolOutputParameter::fromYaml([[maybe_
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ExpressionToolOutputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ExpressionToolOutputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ExpressionToolOutputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ExpressionToolOutputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ExpressionToolOutputParameter{};
+        auto res = ::w3id_org::cwl::cwl::ExpressionToolOutputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -7272,6 +7366,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ExpressionToo
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::WorkflowInputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7306,12 +7401,13 @@ inline void w3id_org::cwl::cwl::WorkflowInputParameter::fromYaml([[maybe_unused]
         fromYaml(expandedNode, *inputBinding);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowInputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkflowInputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkflowInputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkflowInputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkflowInputParameter{};
+        auto res = ::w3id_org::cwl::cwl::WorkflowInputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -7328,6 +7424,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowInput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ExpressionTool::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7449,12 +7546,13 @@ inline void w3id_org::cwl::cwl::ExpressionTool::fromYaml([[maybe_unused]] YAML::
         fromYaml(expandedNode, *expression);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ExpressionTool> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ExpressionTool> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ExpressionTool> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ExpressionTool> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ExpressionTool{};
+        auto res = ::w3id_org::cwl::cwl::ExpressionTool{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.id)::value_t>::value) try {
             fromYaml(n["id"], *res.id);
@@ -7525,6 +7623,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ExpressionToo
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::WorkflowOutputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7579,12 +7678,13 @@ inline void w3id_org::cwl::cwl::WorkflowOutputParameter::fromYaml([[maybe_unused
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowOutputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkflowOutputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkflowOutputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkflowOutputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkflowOutputParameter{};
+        auto res = ::w3id_org::cwl::cwl::WorkflowOutputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.outputSource)::value_t>::value) try {
             fromYaml(n["outputSource"], *res.outputSource);
@@ -7613,6 +7713,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowOutpu
         return std::nullopt;
     }
 };
+}
 inline w3id_org::cwl::cwl::Sink::~Sink() = default;
 inline auto w3id_org::cwl::cwl::Sink::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
@@ -7694,12 +7795,13 @@ inline void w3id_org::cwl::cwl::WorkflowStepInput::fromYaml([[maybe_unused]] YAM
         fromYaml(expandedNode, *valueFrom);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowStepInput> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkflowStepInput> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkflowStepInput> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkflowStepInput> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkflowStepInput{};
+        auto res = ::w3id_org::cwl::cwl::WorkflowStepInput{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.default_)::value_t>::value) try {
             fromYaml(n["default"], *res.default_);
@@ -7716,6 +7818,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowStepI
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::WorkflowStepOutput::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7729,16 +7832,18 @@ inline void w3id_org::cwl::cwl::WorkflowStepOutput::fromYaml([[maybe_unused]] YA
     using ::w3id_org::cwl::fromYaml;
     w3id_org::cwl::cwl::Identified::fromYaml(n);
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowStepOutput> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkflowStepOutput> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkflowStepOutput> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkflowStepOutput> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkflowStepOutput{};
+        auto res = ::w3id_org::cwl::cwl::WorkflowStepOutput{};
 
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::WorkflowStep::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -7836,12 +7941,13 @@ inline void w3id_org::cwl::cwl::WorkflowStep::fromYaml([[maybe_unused]] YAML::No
         fromYaml(expandedNode, *scatterMethod);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowStep> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::WorkflowStep> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::WorkflowStep> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::WorkflowStep> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::WorkflowStep{};
+        auto res = ::w3id_org::cwl::cwl::WorkflowStep{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.in)::value_t>::value) try {
             fromYaml(n["in"], *res.in);
@@ -7894,6 +8000,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::WorkflowStep>
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::Workflow::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8015,12 +8122,13 @@ inline void w3id_org::cwl::cwl::Workflow::fromYaml([[maybe_unused]] YAML::Node c
         fromYaml(expandedNode, *steps);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Workflow> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::Workflow> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::Workflow> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::Workflow> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::Workflow{};
+        auto res = ::w3id_org::cwl::cwl::Workflow{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.id)::value_t>::value) try {
             fromYaml(n["id"], *res.id);
@@ -8091,6 +8199,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Workflow> {
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::SubworkflowFeatureRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8114,12 +8223,13 @@ inline void w3id_org::cwl::cwl::SubworkflowFeatureRequirement::fromYaml([[maybe_
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SubworkflowFeatureRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::SubworkflowFeatureRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::SubworkflowFeatureRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::SubworkflowFeatureRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::SubworkflowFeatureRequirement{};
+        auto res = ::w3id_org::cwl::cwl::SubworkflowFeatureRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -8130,6 +8240,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::SubworkflowFe
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::ScatterFeatureRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8153,12 +8264,13 @@ inline void w3id_org::cwl::cwl::ScatterFeatureRequirement::fromYaml([[maybe_unus
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ScatterFeatureRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::ScatterFeatureRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::ScatterFeatureRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::ScatterFeatureRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::ScatterFeatureRequirement{};
+        auto res = ::w3id_org::cwl::cwl::ScatterFeatureRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -8169,6 +8281,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::ScatterFeatur
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::MultipleInputFeatureRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8192,12 +8305,13 @@ inline void w3id_org::cwl::cwl::MultipleInputFeatureRequirement::fromYaml([[mayb
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::MultipleInputFeatureRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::MultipleInputFeatureRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::MultipleInputFeatureRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::MultipleInputFeatureRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::MultipleInputFeatureRequirement{};
+        auto res = ::w3id_org::cwl::cwl::MultipleInputFeatureRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -8208,6 +8322,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::MultipleInput
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::StepInputExpressionRequirement::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8231,12 +8346,13 @@ inline void w3id_org::cwl::cwl::StepInputExpressionRequirement::fromYaml([[maybe
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::StepInputExpressionRequirement> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::StepInputExpressionRequirement> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::StepInputExpressionRequirement> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::StepInputExpressionRequirement> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::StepInputExpressionRequirement{};
+        auto res = ::w3id_org::cwl::cwl::StepInputExpressionRequirement{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.class_)::value_t>::value) try {
             fromYaml(n["class"], *res.class_);
@@ -8247,6 +8363,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::StepInputExpr
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OperationInputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8271,12 +8388,13 @@ inline void w3id_org::cwl::cwl::OperationInputParameter::fromYaml([[maybe_unused
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OperationInputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OperationInputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OperationInputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OperationInputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OperationInputParameter{};
+        auto res = ::w3id_org::cwl::cwl::OperationInputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -8287,6 +8405,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OperationInpu
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::OperationOutputParameter::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8311,12 +8430,13 @@ inline void w3id_org::cwl::cwl::OperationOutputParameter::fromYaml([[maybe_unuse
         fromYaml(expandedNode, *type);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OperationOutputParameter> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::OperationOutputParameter> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::OperationOutputParameter> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::OperationOutputParameter> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::OperationOutputParameter{};
+        auto res = ::w3id_org::cwl::cwl::OperationOutputParameter{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.type)::value_t>::value) try {
             fromYaml(n["type"], *res.type);
@@ -8327,6 +8447,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::OperationOutp
         return std::nullopt;
     }
 };
+}
 inline auto w3id_org::cwl::cwl::Operation::toYaml([[maybe_unused]] ::w3id_org::cwl::store_config const& config) const -> YAML::Node {
     using ::w3id_org::cwl::toYaml;
     auto n = YAML::Node{};
@@ -8438,12 +8559,13 @@ inline void w3id_org::cwl::cwl::Operation::fromYaml([[maybe_unused]] YAML::Node 
         fromYaml(expandedNode, *class_);
     }
 }
+namespace w3id_org::cwl {
 template <>
-struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Operation> {
-    auto operator()(YAML::Node const& n) const -> std::optional<w3id_org::cwl::cwl::Operation> {
+struct DetectAndExtractFromYaml<::w3id_org::cwl::cwl::Operation> {
+    auto operator()(YAML::Node const& n) const -> std::optional<::w3id_org::cwl::cwl::Operation> {
         if (!n.IsDefined()) return std::nullopt;
         if (!n.IsMap()) return std::nullopt;
-        auto res = w3id_org::cwl::cwl::Operation{};
+        auto res = ::w3id_org::cwl::cwl::Operation{};
 
         if constexpr (::w3id_org::cwl::IsConstant<decltype(res.id)::value_t>::value) try {
             fromYaml(n["id"], *res.id);
@@ -8508,6 +8630,7 @@ struct w3id_org::cwl::DetectAndExtractFromYaml<w3id_org::cwl::cwl::Operation> {
         return std::nullopt;
     }
 };
+}
 namespace w3id_org::cwl {
 
 template <typename T>
@@ -8612,7 +8735,7 @@ auto load_document_from_string(std::string document) -> DocumentRootType {
     return load_document_from_yaml(YAML::Load(document));
 }
 auto load_document(std::filesystem::path path) -> DocumentRootType {
-    return load_document_from_yaml(YAML::LoadFile(path));
+    return load_document_from_yaml(YAML::LoadFile(path.string()));
 }
 void store_document(DocumentRootType const& root, std::ostream& ostream, store_config config={}) {
     auto y = toYaml(root, config);
